@@ -59,11 +59,23 @@ class BeFlashy extends BE {
             attributes: true, 
             attributeFilter: [attr],
         });
-        return /** @type  */ ({
+        return /** @type {BAP} */ ({
             resolved: true
         })
+    }
+
+    /**
+     * 
+     * @param {Element} el 
+     */
+    async detach(el){
+        super.detach(el);
+        if(this.#mutationObserver){
+            this.#mutationObserver.disconnect();
+            this.#mutationObserver = undefined;
+        }
     }
 }
 
 await BeFlashy.bootUp();
-export { BeFlashy as default};
+export { BeFlashy};

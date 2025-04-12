@@ -20,6 +20,11 @@ class BeFlashy extends BE {
             css: 'be-flashy'
         },
         positractions: [resolved, rejected],
+        actions: {
+            hydrate: {
+                ifAllOf: ['attr', 'css', 'delay'],
+            }
+        }
     };
 
     /**

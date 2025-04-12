@@ -1,6 +1,6 @@
 {
   "name": "be-flashy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Set css class temporarily when element state changes",
   "homepage": "https://github.com/bahrus/be-flashy#readme",
   "bugs": {

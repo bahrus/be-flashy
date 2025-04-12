@@ -26,4 +26,4 @@ What this does:
 <data 🚨=500 value=12367.45>12,367.45</data>
 ```
 
-Number is in milleseconds.
+Number is in milliseconds.

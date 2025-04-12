@@ -1,0 +1,20 @@
+{
+  "name": "be-flashy",
+  "version": "0.0.0",
+  "description": "Set css class temporarily when element state changes",
+  "homepage": "https://github.com/bahrus/be-flashy#readme",
+  "bugs": {
+    "url": "https://github.com/bahrus/be-flashy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/be-flashy.git"
+  },
+  "license": "MIT",
+  "author": "anderson.bruce.b@gmail.com",
+  "type": "module",
+  "main": "be-flashy.js",
+  "scripts": {
+    "test": "playwright test"
+  }
+}

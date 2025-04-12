@@ -8,11 +8,21 @@ import { BeHive, seed, MountObserver } from 'be-hive/be-hive.js';
  */
 export const emc = {
     base: 'be-flashy',
+    branches: ['', 'delay', 'attr', 'css'],
     enhPropKey: 'beFlashy',
     map: {
-        '0.0': 'delay',
-        '1.0': 'attr',
-        '2.0': 'css',
+        '1.0': {
+            mapsTo: 'delay',
+            instanceOf: 'Number',
+        },
+        '2.0': {
+            mapsTo: 'attr',
+            instanceOf: 'String',
+        },
+        '3.0': {
+            mapsTo: 'css',
+            instanceOf: 'String',
+        }
     },
 
     importEnh: async () => {

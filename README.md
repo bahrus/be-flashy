@@ -1,8 +1,7 @@
-# be-flashy (🚨) [TODO]
+# be-flashy (🚨) 
 Set css class temporarily when element state changes
 
 ```html
-<output 🚨 value=12367.45>12,367.45</output>
 <data 🚨 value=12367.45>12,367.45</data>
 ```
 
@@ -22,8 +21,8 @@ What this does:
 ## Set the timeout [TODO]
 
 ```html
-<output 🚨=2000 value=12367.45>12,367.45</output>
-<data 🚨=500 value=12367.45>12,367.45</data>
+<output 🚨-delay=2000 value=12367.45>12,367.45</output>
+<data 🚨-delay=500 value=12367.45>12,367.45</data>
 ```
 
 Number is in milliseconds.

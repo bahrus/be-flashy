@@ -8,11 +8,11 @@ import { BeHive, seed, MountObserver } from 'be-hive/be-hive.js';
  */
 export const emc = {
     base: 'be-flashy',
-    branches: ['', 'delay', 'attr', 'css'],
+    branches: ['', 'duration', 'attr', 'css'],
     enhPropKey: 'beFlashy',
     map: {
         '1.0': {
-            mapsTo: 'delay',
+            mapsTo: 'duration',
             instanceOf: 'Number',
         },
         '2.0': {

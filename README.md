@@ -26,7 +26,7 @@ What this does:
 ## Set the timeout
 
 ```html
-<data 🚨-delay=500 value=12367.45>12,367.45</data>
+<data 🚨-duration=500 value=12367.45>12,367.45</data>
 ```
 
 Number is in milliseconds.

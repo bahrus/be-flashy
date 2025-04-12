@@ -15,14 +15,14 @@ class BeFlashy extends BE {
      */
     static config = {
         propDefaults:{
-            delay: 1000,
+            duration: 1000,
             attr: 'value',
             css: 'be-flashy'
         },
         positractions: [resolved, rejected],
         actions: {
             hydrate: {
-                ifAllOf: ['attr', 'css', 'delay'],
+                ifAllOf: ['attr', 'css', 'duration'],
             }
         }
     };
@@ -40,13 +40,13 @@ class BeFlashy extends BE {
      * @returns 
      */
     hydrate(self){
-        const {enhancedElement, attr, css, delay} = self;
+        const {enhancedElement, attr, css, duration} = self;
         this.#mutationObserver = new MutationObserver((mutations) => {
             for (const mutation of mutations) {
                 enhancedElement.classList.add(css);
                 setTimeout(() => {
                     enhancedElement.classList.remove(css);
-                }, delay);
+                }, duration);
                 break;
             }
         });

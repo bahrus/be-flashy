@@ -14,7 +14,25 @@
   "author": "anderson.bruce.b@gmail.com",
   "type": "module",
   "main": "be-flashy.js",
+  "files": [
+    "*.js",
+    "./ts-refs/be-flashy/types.d.ts",
+    "README.md"
+  ],
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "serve": "python3 ./node_modules/ssi-server/ssi_server.py",
+    "safari": "npx playwright wk http://localhost:3030",
+    "update": "ncu -u && npm install"
+  },
+  "dependencies": {
+    "be-enhanced": "0.0.171",
+    "be-hive": "0.0.251",
+    "mount-observer": "0.0.45",
+    "trans-render": "0.0.890"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.51.1",
+    "ssi-server": "0.0.1"
   }
 }

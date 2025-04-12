@@ -1,8 +1,9 @@
 // @ts-check
 import { propInfo, rejected, resolved } from 'be-enhanced/cc.js';
 import { BE } from 'be-enhanced/BE.js';
+import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
 /** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types.d.ts' */
-/** @import {Actions, PAP, AllProps, AP} from './ts-refs/be-flashy/types' */;
+/** @import {Actions, PAP, AllProps, AP, BAP} from './ts-refs/be-flashy/types' */;
 
 /**
  * @implements {Actions}
@@ -13,7 +14,50 @@ class BeFlashy extends BE {
      * @type {BEConfig<AP & BEAllProps, Actions & IEnhancement>}
      */
     static config = {
+        propDefaults:{
+            delay: 1000,
+            attr: 'value',
+            css: 'be-flashy'
+        },
+        positractions: [resolved, rejected],
     };
+
+    /**
+     * @type {MutationObserver | undefined}
+     */
+    #mutationObserver;
+
+    de = de;
+
+    /**
+     * 
+     * @param {BAP} self 
+     * @returns 
+     */
+    hydrate(self){
+        const {enhancedElement, attr, css, delay} = self;
+        this.#mutationObserver = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === 'attributes') {
+                    const attrName = mutation.attributeName;
+                    if(attrName !== null){
+                        enhancedElement.classList.add(css);
+                        setTimeout(() => {
+                            enhancedElement.classList.remove(css);
+                        }, delay);
+                    }
+                    
+                }
+            }
+        });
+        this.#mutationObserver.observe(enhancedElement, {
+            attributes: true, 
+            attributeFilter: [attr],
+        });
+        return /** @type  */ ({
+            resolved: true
+        })
+    }
 }
 
 await BeFlashy.bootUp();

@@ -23,7 +23,7 @@ What this does:
 2.  When the value attribute changes, adds class 'be-flashy' for 1 second, removes it after 1 second.
 
 
-## Set the timeout [TODO]
+## Set the timeout
 
 ```html
 <data 🚨-delay=500 value=12367.45>12,367.45</data>

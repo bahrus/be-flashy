@@ -31,6 +31,12 @@ What this does:
 
 Number is in milliseconds.
 
+## Observe some other attribute
+
+```html
+<td aria-colindex=4 🚨-attr=aria-colindex></td>
+```
+
 ## Observing changes to textContent
 
 ```html

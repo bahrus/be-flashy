@@ -1,4 +1,4 @@
-# be-flashy (🚨)
+# be-flashy (🚨) [TODO]
 Set css class temporarily when element state changes
 
 ```html
@@ -19,3 +19,11 @@ What this does:
 2.  When the value attribute changes, adds class 'be-flashy' for 1 second, removes it after 1 second.
 
 
+## Set the timeout [TODO]
+
+```html
+<output 🚨=2000 value=12367.45>12,367.45</output>
+<data 🚨=500 value=12367.45>12,367.45</data>
+```
+
+Number is in milleseconds.

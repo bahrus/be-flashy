@@ -43,17 +43,11 @@ class BeFlashy extends BE {
         const {enhancedElement, attr, css, delay} = self;
         this.#mutationObserver = new MutationObserver((mutations) => {
             for (const mutation of mutations) {
-                console.log({mutation})
-                //if (mutation.type === 'attributes' || mutation.type === 'characterData') {
-                    // const attrName = mutation.attributeName;
-                    // if(attrName !== null){
-                        enhancedElement.classList.add(css);
-                        setTimeout(() => {
-                            enhancedElement.classList.remove(css);
-                        }, delay);
-                    //}
-                    
-                //}
+                enhancedElement.classList.add(css);
+                setTimeout(() => {
+                    enhancedElement.classList.remove(css);
+                }, delay);
+                break;
             }
         });
         if(attr === 'textContent'){

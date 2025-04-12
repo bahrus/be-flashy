@@ -31,6 +31,12 @@ What this does:
 
 Number is in milliseconds.
 
+## Observing changes to textContent
+
+```html
+<output 🚨-attr=textContent>12,367.45</output>
+```
+
 ## Viewing Locally
 
 Any web server that serves static files with server-side includes will do but...

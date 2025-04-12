@@ -14,6 +14,13 @@
   "author": "anderson.bruce.b@gmail.com",
   "type": "module",
   "main": "be-flashy.js",
+  "module": "be-flashy.js",
+  "exports": {
+    ".": "./be-flashy.js",
+    "./be-flashy.js": "./be-flashy.js",
+    "./emc.js": "./emc.js",
+    "./🚨.js": "./🚨.js"
+  },
   "files": [
     "*.js",
     "./ts-refs/be-flashy/types.d.ts",

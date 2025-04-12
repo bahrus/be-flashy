@@ -14,7 +14,6 @@ Set css class temporarily when element state changes.
 or
 
 ```html
-<output be-flashy value=12367.45>12,367.45</output>
 <data be-flashy value=12367.45>12,367.45</data>
 ```
 
@@ -27,7 +26,6 @@ What this does:
 ## Set the timeout [TODO]
 
 ```html
-<output 🚨-delay=2000 value=12367.45>12,367.45</output>
 <data 🚨-delay=500 value=12367.45>12,367.45</data>
 ```
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- #include virtual="/imports.html" -->
+     <script type=module>
+        import '/🚨.js';
+     </script>
+</head>
+<body>
+    <data id=data 🚨-delay=10000 value=12367.45>12,367.45</data>
+    <div id=target></div>
+    <script>
+        function runTest() {
+            data.value=123;
+            setTimeout(() => {
+                if (data.classList.contains('be-flashy')) {
+                    target.setAttribute('mark', 'good');
+                }
+            }, 100);
+        }
+
+        setTimeout(() => {
+            runTest();
+        }, 500);
+    </script>
+</body>
+</html>

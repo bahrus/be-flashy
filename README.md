@@ -43,6 +43,8 @@ Number is in milliseconds.
 <output 🚨-attr=textContent>12,367.45</output>
 ```
 
+Other options:  innerHTML, shadowRoot
+
 ## Viewing Locally
 
 Any web server that serves static files with server-side includes will do but...

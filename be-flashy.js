@@ -39,7 +39,7 @@ class BeFlashy extends BE {
      * @param {BAP} self 
      * @returns 
      */
-    hydrate(self){
+    async hydrate(self){
         const {enhancedElement, attr, css, duration} = self;
         this.#mutationObserver = new MutationObserver((mutations) => {
             for (const mutation of mutations) {
@@ -50,16 +50,39 @@ class BeFlashy extends BE {
                 break;
             }
         });
-        if(attr === 'textContent'){
-            this.#mutationObserver.observe(enhancedElement, {
-                childList: true,
-            });
-        }else{
-            this.#mutationObserver.observe(enhancedElement, {
-                attributes: true, 
-                attributeFilter: [attr],
-            });
+        switch(attr){
+            case 'textContent':
+                this.#mutationObserver.observe(enhancedElement, {
+                    childList: true,
+                });
+                break;
+            case 'innerHTML':
+                this.#mutationObserver.observe(enhancedElement, {
+                    childList: true,
+                    subtree: true,
+                });
+                break;
+            case 'shadowRoot':
+                const {localName} = enhancedElement;
+                if(localName.includes('-')){
+                    await customElements.whenDefined(localName);
+                }
+                const {shadowRoot} = enhancedElement;
+                if(!shadowRoot){
+                    throw new Error('Shadow root not found');
+                }
+                this.#mutationObserver.observe(shadowRoot, {
+                    childList: true,
+                    subtree: true,
+                });
+                break;
+            default:
+                this.#mutationObserver.observe(enhancedElement, {
+                    attributes: true, 
+                    attributeFilter: [attr],
+                });
         }
+        
 
         return /** @type {BAP} */ ({
             resolved: true

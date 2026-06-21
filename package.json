@@ -1,6 +1,6 @@
 {
   "name": "be-flashy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Set css class temporarily when element state changes",
   "homepage": "https://github.com/bahrus/be-flashy#readme",
   "bugs": {
@@ -18,28 +18,31 @@
   "exports": {
     ".": "./be-flashy.js",
     "./be-flashy.js": "./be-flashy.js",
-    "./emc.js": "./emc.js",
-    "./🚨.js": "./🚨.js"
+    "./emc.js": "./emc.mjs",
+    "./🚨.js": "./🚨.mjs"
   },
   "files": [
     "*.js",
-    "./ts-refs/be-flashy/types.d.ts",
+    "*.mjs",
+    "*.json",
+    "./types/be-flashy/types.d.ts",
     "README.md"
   ],
   "scripts": {
+    "build": "node emc.mjs > emc.json && node 🚨.mjs > 🚨.json",
+    "serve": "node ./node_modules/spa-ssi/serve.js",
     "test": "playwright test",
-    "serve": "python3 ./node_modules/ssi-server/ssi_server.py",
-    "safari": "npx playwright wk http://localhost:3030",
+    "safari": "npx playwright wk http://localhost:8000",
     "update": "ncu -u && npm install"
   },
   "dependencies": {
-    "be-enhanced": "0.0.171",
-    "be-hive": "0.0.251",
-    "mount-observer": "0.0.45",
-    "trans-render": "0.0.890"
+    "be-hive": "0.1.15",
+    "mount-observer": "0.1.41",
+    "roundabout-lib": "0.0.23",
+    "nested-regex-groups": "0.0.7"
   },
   "devDependencies": {
-    "@playwright/test": "1.51.1",
-    "ssi-server": "0.0.1"
+    "@playwright/test": "1.61.0",
+    "spa-ssi": "0.0.27"
   }
 }

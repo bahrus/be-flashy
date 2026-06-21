@@ -1,56 +1,43 @@
 // @ts-check
-/** @import {Actions, PAP, AllProps, AP} from './types/be-flashy/types' */;
-/** @import {RoundaboutOptions} from './types/roundabout/types' */;
-/** @import {ElementEnhancementGateway, SpawnContext} from './types/assign-gingerly/types' */;
-/** @import {EMC} from './types/mount-observer/types' */;
-/** @import {RAConfig} from './types/roundabout/types' */;
+import { propInfo, rejected, resolved } from 'be-enhanced/cc.js';
+import { BE } from 'be-enhanced/BE.js';
+import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
+/** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types.d.ts' */
+/** @import {Actions, PAP, AllProps, AP, BAP} from './ts-refs/be-flashy/types' */;
 
 /**
  * @implements {Actions}
+ * 
  */
-class BeFlashy {
+class BeFlashy extends BE {
+    /**
+     * @type {BEConfig<AP & BEAllProps, Actions & IEnhancement>}
+     */
+    static config = {
+        propDefaults:{
+            duration: 1000,
+            attr: 'value',
+            css: 'be-flashy'
+        },
+        positractions: [resolved, rejected],
+        actions: {
+            hydrate: {
+                ifAllOf: ['attr', 'css', 'duration'],
+            }
+        }
+    };
 
     /**
      * @type {MutationObserver | undefined}
      */
     #mutationObserver;
 
-    /**
-     * @this {AllProps & Actions}
-     * @param {Element & ElementEnhancementGateway} enhancedElement 
-     * @param {SpawnContext} ctx 
-     * @param {PAP} initVals 
-     */
-    constructor(enhancedElement, ctx, initVals){
-        this.init(this, enhancedElement, ctx, initVals);
-    }
+    de = de;
 
     /**
-     * @param {AllProps} self 
-     * @param {Element & ElementEnhancementGateway} enhancedElement 
-     * @param {SpawnContext} ctx 
-     * @param {PAP} initVals 
-     */
-    async init(self, enhancedElement, ctx, initVals){
-        const {customData} = /** @type {EMC<any, AllProps, Element, RAConfig<AllProps, Actions>>} */ (ctx.emc);
-        /**
-         * @type {RoundaboutOptions}
-         */
-        const raOptions = {
-            ...customData,
-            vm: self,
-            initialPropVals: {
-                enhancedElement,
-                ...customData?.defaultPropVals,
-                ...initVals
-            }
-        };
-        (await import('roundabout-lib/roundabout.js')).roundabout(raOptions);
-    }
-
-    /**
-     * @param {AP} self 
-     * @returns {Promise<PAP>}
+     * 
+     * @param {BAP} self 
+     * @returns 
      */
     async hydrate(self){
         const {enhancedElement, attr, css, duration} = self;
@@ -80,7 +67,7 @@ class BeFlashy {
                 if(localName.includes('-')){
                     await customElements.whenDefined(localName);
                 }
-                const {shadowRoot} = /** @type {HTMLElement} */ (enhancedElement);
+                const {shadowRoot} = enhancedElement;
                 if(!shadowRoot){
                     throw new Error('Shadow root not found');
                 }
@@ -95,11 +82,25 @@ class BeFlashy {
                     attributeFilter: [attr],
                 });
         }
+        
 
-        return /** @type {PAP} */ ({
+        return /** @type {BAP} */ ({
             resolved: true
-        });
+        })
+    }
+
+    /**
+     * 
+     * @param {Element} el 
+     */
+    async detach(el){
+        super.detach(el);
+        if(this.#mutationObserver){
+            this.#mutationObserver.disconnect();
+            this.#mutationObserver = undefined;
+        }
     }
 }
 
-export { BeFlashy };
+await BeFlashy.bootUp();
+export { BeFlashy};

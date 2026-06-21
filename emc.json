@@ -1,0 +1,37 @@
+{
+    "enhConfig": {
+        "enhKey": "BeFlashy",
+        "spawn": "be-flashy/be-flashy.js",
+        "withAttrs": {
+            "base": "be-flashy",
+            "duration": "${base}-duration",
+            "_duration": {
+                "instanceOf": "Number"
+            },
+            "attr": "${base}-attr",
+            "css": "${base}-css"
+        }
+    },
+    "customData": {
+        "weakRef": {
+            "properties": [
+                "enhancedElement"
+            ]
+        },
+        "actions": {
+            "hydrate": {
+                "ifAllOf": [
+                    "attr",
+                    "css",
+                    "duration",
+                    "enhancedElement"
+                ]
+            }
+        },
+        "defaultPropVals": {
+            "duration": 1000,
+            "attr": "value",
+            "css": "be-flashy"
+        }
+    }
+}
